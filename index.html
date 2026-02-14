@@ -2,565 +2,216 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="color-scheme" content="light dark" />
-	<meta name="theme-color" content="#0b0f19" />
 	<title>Privacy Policy • Dalenzii Dev</title>
 
 	<style>
 		:root{
-			--bg0:#070b14;
 			--bg1:#0b0f19;
-			--bg2:#0e1430;
+			--bg2:#0f1733;
 			--card: rgba(255,255,255,0.08);
-			--card2: rgba(255,255,255,0.10);
+			--border: rgba(255,255,255,0.15);
 			--text: rgba(255,255,255,0.92);
-			--muted: rgba(255,255,255,0.72);
-			--faint: rgba(255,255,255,0.56);
-			--border: rgba(255,255,255,0.14);
-			--accent: #7aa2ff;
-			--accent2: #7bffc8;
-			--shadow: 0 22px 70px rgba(0,0,0,0.40);
-			--radius: 18px;
-			--mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-			--sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-			--max: 1020px;
+			--muted: rgba(255,255,255,0.70);
+			--accent:#7aa2ff;
+			--shadow: 0 25px 70px rgba(0,0,0,0.45);
+			--radius:20px;
+			--max:1000px;
+			font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
 		}
 
-		@media (prefers-color-scheme: light){
-			:root{
-				--bg0:#f6f7fb;
-				--bg1:#f6f7fb;
-				--bg2:#eef2ff;
-				--card:#ffffff;
-				--card2:#f2f4ff;
-				--text:#0f1324;
-				--muted:#2e3650;
-				--faint:#5a6486;
-				--border: rgba(16,20,36,0.12);
-				--shadow: 0 20px 55px rgba(16,20,36,0.12);
-				--accent:#345dff;
-				--accent2:#00a67d;
-			}
-		}
-
-		*{ box-sizing:border-box; }
-		html,body{ height:100%; }
 		body{
 			margin:0;
-			font-family: var(--sans);
-			color: var(--text);
-			background: var(--bg1);
-			line-height: 1.65;
-			text-rendering: optimizeLegibility;
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-			overflow-x: hidden;
-		}
-
-		/* Smooth gradient background without band/seam:
-		   - pseudo layers + blur + dithering-ish overlay */
-		.bg{
-			position: fixed;
-			inset: 0;
-			z-index: -2;
+			color:var(--text);
 			background:
-				radial-gradient(1200px 900px at 10% -10%, rgba(122,162,255,0.30), transparent 60%),
-				radial-gradient(1000px 800px at 110% 10%, rgba(123,255,200,0.16), transparent 60%),
-				radial-gradient(900px 700px at 30% 120%, rgba(122,162,255,0.16), transparent 58%),
-				linear-gradient(180deg, var(--bg2), var(--bg1));
-			filter: saturate(1.05);
-			transform: translateZ(0);
+				radial-gradient(1000px 800px at 20% -10%, rgba(122,162,255,0.35), transparent 60%),
+				radial-gradient(900px 700px at 100% 10%, rgba(123,255,200,0.18), transparent 60%),
+				linear-gradient(180deg,var(--bg2),var(--bg1));
+			line-height:1.65;
 		}
-		.bg::after{
-			content:"";
-			position:absolute;
-			inset:-40px;
-			background:
-				radial-gradient(800px 600px at 50% 30%, rgba(255,255,255,0.04), transparent 65%),
-				radial-gradient(700px 500px at 40% 80%, rgba(0,0,0,0.10), transparent 65%);
-			filter: blur(22px);
-			opacity: 0.9;
-			pointer-events:none;
-		}
-		/* Subtle noise to reduce banding (no external asset) */
-		.noise{
-			position: fixed;
-			inset: 0;
-			z-index: -1;
-			pointer-events:none;
-			opacity: 0.10;
-			mix-blend-mode: overlay;
-			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
-			background-size: 180px 180px;
-		}
-
-		a{ color: var(--accent); text-decoration: none; }
-		a:hover{ text-decoration: underline; }
 
 		.container{
-			max-width: var(--max);
-			margin: 0 auto;
-			padding: 28px 16px 62px;
-		}
-
-		.header{
-			padding: 22px 18px;
-			border: 1px solid var(--border);
-			background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.03));
-			box-shadow: var(--shadow);
-			border-radius: calc(var(--radius) + 2px);
-			backdrop-filter: blur(12px);
-			transform: translateY(8px);
-			opacity: 0;
-			animation: riseIn 520ms ease forwards;
-		}
-
-		.kicker{
-			display:inline-flex;
-			gap:10px;
-			align-items:center;
-			padding: 6px 10px;
-			border: 1px solid var(--border);
-			background: var(--card2);
-			border-radius: 999px;
-			color: var(--muted);
-			font-size: 13px;
-		}
-
-		.dot{
-			width:10px; height:10px; border-radius:999px;
-			background: linear-gradient(135deg, var(--accent), var(--accent2));
-			box-shadow: 0 0 0 4px rgba(122,162,255,0.15);
-		}
-
-		h1{
-			margin: 14px 0 8px;
-			font-size: clamp(28px, 3.6vw, 44px);
-			letter-spacing: -0.03em;
-			line-height: 1.1;
-		}
-
-		.sub{
-			margin:0;
-			color: var(--muted);
-			font-size: 15px;
-		}
-
-		.meta{
-			display:flex;
-			flex-wrap: wrap;
-			gap: 10px 12px;
-			margin-top: 14px;
-			color: var(--faint);
-			font-size: 13px;
-		}
-
-		.badge{
-			font-family: var(--mono);
-			font-size: 12px;
-			padding: 6px 10px;
-			border-radius: 999px;
-			border: 1px solid var(--border);
-			background: var(--card2);
-			color: var(--muted);
-		}
-
-		.grid{
-			display:grid;
-			grid-template-columns: 1fr;
-			gap: 14px;
-			margin-top: 14px;
-			align-items: start;
-		}
-		@media (min-width: 980px){
-			.grid{ grid-template-columns: 2.1fr 0.9fr; gap: 18px; }
+			max-width:var(--max);
+			margin:auto;
+			padding:40px 18px 80px;
 		}
 
 		.card{
-			border: 1px solid var(--border);
-			background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.03));
-			box-shadow: var(--shadow);
-			border-radius: var(--radius);
-			backdrop-filter: blur(12px);
-			padding: 18px 16px;
+			background:var(--card);
+			border:1px solid var(--border);
+			border-radius:var(--radius);
+			backdrop-filter:blur(14px);
+			box-shadow:var(--shadow);
+			padding:30px 22px;
+			animation:fadeUp .6s ease forwards;
+			opacity:0;
+			transform:translateY(15px);
 		}
 
-		main.card{
-			transform: translateY(10px);
-			opacity: 0;
-			animation: riseIn 560ms ease forwards;
-			animation-delay: 80ms;
+		@keyframes fadeUp{
+			to{opacity:1;transform:translateY(0);}
 		}
 
-		aside.card{
-			position: sticky;
-			top: 14px;
-			transform: translateY(10px);
-			opacity: 0;
-			animation: riseIn 560ms ease forwards;
-			animation-delay: 140ms;
-		}
-		@media (max-width: 979px){
-			aside.card{ position: static; }
+		h1{
+			font-size:clamp(30px,4vw,46px);
+			margin:0 0 12px;
+			letter-spacing:-.02em;
 		}
 
-		.card h2{
-			margin: 0 0 10px;
-			font-size: 18px;
-			letter-spacing: -0.01em;
+		h2{
+			margin:32px 0 10px;
+			font-size:20px;
 		}
 
-		.section{
-			scroll-margin-top: 90px;
-			padding-top: 6px;
+		p{
+			color:var(--muted);
+			margin:10px 0;
 		}
-
-		.card h3{
-			margin: 18px 0 8px;
-			font-size: 16px;
-		}
-
-		p{ margin: 10px 0 0; color: var(--muted); }
-		strong{ color: var(--text); }
 
 		ul{
-			margin: 10px 0 0;
-			padding-left: 20px;
-			color: var(--muted);
-		}
-		li{ margin: 6px 0; }
-
-		hr{
-			border: none;
-			border-top: 1px solid var(--border);
-			margin: 18px 0;
+			color:var(--muted);
+			padding-left:20px;
 		}
 
-		.callout{
-			margin-top: 14px;
-			border: 1px solid var(--border);
-			background: linear-gradient(135deg, rgba(122,162,255,0.12), rgba(123,255,200,0.08));
-			border-radius: 14px;
-			padding: 14px 14px;
-			color: var(--muted);
+		a{
+			color:var(--accent);
+			text-decoration:none;
 		}
 
-		.small{ font-size: 13px; color: var(--faint); }
+		a:hover{
+			text-decoration:underline;
+		}
+
+		.meta{
+			font-size:14px;
+			color:var(--muted);
+			margin-bottom:20px;
+		}
+
 		.footer{
-			margin-top: 18px;
+			margin-top:40px;
+			font-size:13px;
+			color:rgba(255,255,255,0.55);
 			text-align:center;
-			color: var(--faint);
-			font-size: 12px;
 		}
 
-		code{
-			font-family: var(--mono);
-			background: rgba(122,162,255,0.10);
-			border: 1px solid var(--border);
-			padding: 2px 6px;
-			border-radius: 8px;
-			font-size: 0.95em;
-		}
-
-		/* TOC */
-		.toc a{
-			display:block;
-			padding: 9px 10px;
-			border-radius: 12px;
-			border: 1px solid transparent;
-			color: var(--muted);
-			transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
-		}
-		.toc a:hover{
-			background: var(--card2);
-			border-color: var(--border);
-			text-decoration:none;
-			transform: translateX(2px);
-		}
-		.toc a.active{
-			background: rgba(122,162,255,0.16);
-			border-color: rgba(122,162,255,0.32);
-			color: var(--text);
-		}
-
-		/* Mobile improvements */
-		@media (max-width: 560px){
-			.container{ padding: 22px 14px 54px; }
-			.header{ padding: 18px 14px; }
-			.card{ padding: 16px 14px; }
-			.meta{ gap: 8px 10px; }
-			.badge{ font-size: 11px; }
-		}
-
-		/* Motion (respect reduced motion) */
-		@keyframes riseIn{
-			from{ opacity: 0; transform: translateY(14px); }
-			to{ opacity: 1; transform: translateY(0); }
-		}
-		@media (prefers-reduced-motion: reduce){
-			*{ animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-		}
-
-		/* Smooth scrolling for TOC */
-		html{ scroll-behavior: smooth; }
-
-		/* Top mini-nav for mobile */
-		.mobilebar{
-			display:none;
-			margin-top: 12px;
-			gap: 10px;
-			flex-wrap: wrap;
-		}
-		.btn{
-			display:inline-flex;
-			align-items:center;
-			justify-content:center;
-			gap:8px;
-			padding: 10px 12px;
-			border-radius: 14px;
-			border: 1px solid var(--border);
-			background: var(--card2);
-			color: var(--text);
-			text-decoration:none;
-			font-size: 13px;
-			transition: transform 160ms ease, background 160ms ease;
-		}
-		.btn:hover{ text-decoration:none; transform: translateY(-1px); background: rgba(255,255,255,0.12); }
-
-		@media (max-width: 979px){
-			.mobilebar{ display:flex; }
+		@media(max-width:600px){
+			.container{padding:25px 14px 60px;}
+			.card{padding:22px 16px;}
 		}
 	</style>
 </head>
 
 <body>
-	<div class="bg" aria-hidden="true"></div>
-	<div class="noise" aria-hidden="true"></div>
-
 	<div class="container">
-		<header class="header">
-			<div class="kicker"><span class="dot" aria-hidden="true"></span>Privacy & Data Use</div>
+		<div class="card">
 			<h1>Privacy Policy</h1>
-			<p class="sub">
-				This page explains what information is handled when you use this mobile game (“the Game”), published by <strong>Dalenzii Dev</strong>.
-			</p>
 			<div class="meta">
-				<span class="badge">Last Updated: February 2026</span>
-				<span class="badge">Contact: dalenziidev@gmail.com</span>
+				Last Updated: February 2026<br>
+				Developer: Dalenzii Dev<br>
+				Contact: <a href="mailto:dalenziidev@gmail.com">dalenziidev@gmail.com</a>
 			</div>
 
-			<div class="mobilebar" aria-label="Quick actions">
-				<a class="btn" href="#contact">Contact</a>
-				<a class="btn" href="#admob">Ads</a>
-				<a class="btn" href="#purchases">Purchases</a>
-				<a class="btn" href="#rights">Your Rights</a>
+			<h2>1. Introduction</h2>
+			<p>
+				This Privacy Policy explains how information is handled when you use this mobile game (“the Game”).
+				By accessing or using the Game, you acknowledge and agree to the practices described in this Policy.
+			</p>
+
+			<h2>2. Information Collection</h2>
+			<p>
+				We do not directly collect personal information such as names, email addresses, phone numbers,
+				or precise physical addresses through the Game.
+			</p>
+			<p>
+				However, certain third-party services integrated within the Game may automatically collect
+				technical and usage information as described below.
+			</p>
+
+			<h2>3. Advertising Services</h2>
+			<p>
+				The Game uses Google AdMob to display advertisements, including banner, interstitial,
+				and rewarded ads.
+			</p>
+			<p>
+				AdMob may collect and process information such as:
+			</p>
+			<ul>
+				<li>Advertising identifiers (e.g., Advertising ID)</li>
+				<li>IP address (used to infer general geographic region)</li>
+				<li>Device information (model, OS version, language)</li>
+				<li>Ad interaction data (impressions, clicks)</li>
+				<li>Fraud prevention and security signals</li>
+			</ul>
+			<p>
+				Depending on applicable laws, users may be asked to provide consent for personalized advertising.
+				Where consent is not provided or not required, non-personalized advertising may be shown.
+			</p>
+			<p>
+				For more information, please review Google’s Privacy Policy:
+				<a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a>
+			</p>
+
+			<h2>4. In-App Purchases</h2>
+			<p>
+				The Game offers optional in-app purchases processed by the relevant application store
+				(such as Google Play). We do not receive or store payment card information.
+			</p>
+
+			<h2>5. Data Retention</h2>
+			<p>
+				We do not maintain independent servers for storing user personal data.
+				Any data processed by third-party services is retained in accordance with their
+				respective privacy policies and legal obligations.
+			</p>
+
+			<h2>6. Children and General Audience</h2>
+			<p>
+				The Game is not directed specifically to children, but it is intended for a general audience.
+				We do not knowingly collect personal information directly from children.
+			</p>
+			<p>
+				If you believe personal information has been provided directly to us by a minor,
+				please contact us at the email address listed above.
+			</p>
+
+			<h2>7. User Rights</h2>
+			<p>
+				Users located in certain jurisdictions (including the European Economic Area, United Kingdom,
+				and California) may have specific legal rights regarding access to, deletion of,
+				or restriction of personal data processed by third parties.
+			</p>
+			<p>
+				Advertising consent preferences, where applicable, are managed through in-app consent mechanisms.
+			</p>
+
+			<h2>8. Security</h2>
+			<p>
+				We implement reasonable measures to ensure the Game and its integrations operate securely.
+				However, no method of electronic transmission or storage is completely secure.
+			</p>
+
+			<h2>9. Changes to This Policy</h2>
+			<p>
+				This Privacy Policy may be updated periodically. Continued use of the Game after updates
+				constitutes acceptance of the revised Policy.
+			</p>
+
+			<h2>10. Contact</h2>
+			<p>
+				For questions regarding this Privacy Policy:
+				<strong><a href="mailto:dalenziidev@gmail.com">dalenziidev@gmail.com</a></strong>
+			</p>
+
+			<div class="footer">
+				© <span id="year"></span> Dalenzii Dev. All rights reserved.
 			</div>
-		</header>
-
-		<div class="grid">
-			<main class="card" id="content">
-				<section class="section" id="intro">
-					<h2>1) Introduction</h2>
-					<p>
-						This Privacy Policy describes how information is handled when you use the Game. By using the Game, you agree
-						to the practices described here.
-					</p>
-					<p class="small">
-						Scope note: This policy covers the Game and its built-in third-party services (ads and purchases). It does not
-						cover third-party websites or services you may access from within ads.
-					</p>
-				</section>
-
-				<hr />
-
-				<section class="section" id="collect">
-					<h2>2) Information We Collect</h2>
-					<p>
-						We do <strong>not</strong> directly collect personal information such as your name, address, phone number, or email
-						through the Game.
-					</p>
-					<p>
-						However, third-party services integrated into the Game may collect certain information automatically to provide
-						ads, process purchases, prevent fraud, and comply with legal requirements.
-					</p>
-				</section>
-
-				<section class="section" id="admob" style="margin-top:18px;">
-					<h2>3) Advertising (Google AdMob)</h2>
-					<p>
-						The Game uses <strong>Google AdMob</strong> to display advertisements, including banner, interstitial, and rewarded ads.
-						AdMob may collect and process information such as:
-					</p>
-					<ul>
-						<li>Device identifiers (for example, the Advertising ID)</li>
-						<li>IP address (often used to infer approximate location)</li>
-						<li>Device information (model, OS version, language)</li>
-						<li>Ad interaction and performance data (impressions, clicks)</li>
-						<li>Diagnostics and anti-fraud signals</li>
-					</ul>
-
-					<div class="callout">
-						<strong>Personalized vs. non-personalized ads:</strong>
-						Where required by law (for example, in the EEA/UK), Google may request consent to serve personalized ads.
-						If consent is not granted (or not required), Google may serve non-personalized ads where available.
-					</div>
-
-					<p class="small">
-						Google Privacy Policy:
-						<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>
-					</p>
-				</section>
-
-				<section class="section" id="purchases" style="margin-top:18px;">
-					<h2>4) In-App Purchases</h2>
-					<p>
-						The Game offers optional in-app purchases. Purchases are processed by the platform store (for example, Google Play).
-						We do not receive or store your full payment details (such as credit card numbers).
-					</p>
-				</section>
-
-				<section class="section" id="retention" style="margin-top:18px;">
-					<h2>5) Data Retention</h2>
-					<p>
-						We do not operate our own servers to store personal data from the Game. Third-party services (like AdMob and the app
-						store) may retain data according to their own policies and legal obligations.
-					</p>
-				</section>
-
-				<section class="section" id="children" style="margin-top:18px;">
-					<h2>6) Children and Age Eligibility</h2>
-					<p>
-						The Game is <strong>not directed specifically to children</strong>, but it is intended for a general audience (all ages may play).
-						We do not knowingly collect personal information directly from children.
-					</p>
-					<p>
-						If you are a parent or guardian and believe a child has provided personal information to us directly, contact us at
-						<strong><a href="mailto:dalenziidev@gmail.com">dalenziidev@gmail.com</a></strong> and we will take appropriate action.
-					</p>
-					<p class="small">
-						If you ever decide to target children as your primary audience, you should enable child-directed settings in your ad configuration.
-					</p>
-				</section>
-
-				<section class="section" id="rights" style="margin-top:18px;">
-					<h2>7) Your Rights and Choices</h2>
-
-					<h3 id="rights-eea">EEA/UK (GDPR)</h3>
-					<p>
-						If you are located in the European Economic Area (EEA) or the United Kingdom, you may have rights under GDPR,
-						including access, deletion, objection, and withdrawal of consent for certain processing.
-					</p>
-					<p>
-						When applicable, consent preferences for advertising are presented in the Game via Google’s consent flow
-						(User Messaging Platform).
-					</p>
-
-					<h3 id="rights-ca">California (CCPA/CPRA)</h3>
-					<p>
-						If you are a California resident, you may have rights to request information about data collected and to request deletion.
-						Advertising-related processing is handled primarily by third parties (such as Google AdMob).
-					</p>
-				</section>
-
-				<section class="section" id="security" style="margin-top:18px;">
-					<h2>8) Security</h2>
-					<p>
-						We take reasonable steps to keep the Game and its integrations configured securely. No system is 100% secure,
-						but we aim to minimize risk and use reputable providers.
-					</p>
-				</section>
-
-				<section class="section" id="changes" style="margin-top:18px;">
-					<h2>9) Changes to This Policy</h2>
-					<p>
-						We may update this Privacy Policy from time to time. Updates will be posted on this page and reflected by the
-						“Last Updated” date at the top.
-					</p>
-				</section>
-
-				<section class="section" id="contact" style="margin-top:18px;">
-					<h2>10) Contact</h2>
-					<p>
-						Questions about this Privacy Policy:
-						<strong><a href="mailto:dalenziidev@gmail.com">dalenziidev@gmail.com</a></strong>
-					</p>
-				</section>
-
-				<div class="footer">
-					© <span id="year"></span> Dalenzii Dev. All rights reserved.
-				</div>
-			</main>
-
-			<aside class="card toc" aria-label="Table of contents">
-				<h2>On this page</h2>
-				<a href="#intro">1) Introduction</a>
-				<a href="#collect">2) Information We Collect</a>
-				<a href="#admob">3) Advertising (AdMob)</a>
-				<a href="#purchases">4) In-App Purchases</a>
-				<a href="#retention">5) Data Retention</a>
-				<a href="#children">6) Children and Age Eligibility</a>
-				<a href="#rights">7) Your Rights and Choices</a>
-				<a href="#security">8) Security</a>
-				<a href="#changes">9) Changes</a>
-				<a href="#contact">10) Contact</a>
-
-				<hr />
-
-				<div class="callout">
-					<strong>Tip:</strong> In Google Play Console, your privacy policy link must be public and accessible without login.
-				</div>
-
-				<p class="small" style="margin-top:12px;">
-					If you later add analytics (Firebase, etc.), update this policy to list that provider and what it collects.
-				</p>
-			</aside>
 		</div>
 	</div>
 
 	<script>
-		// Year
 		document.getElementById("year").textContent = new Date().getFullYear();
-
-		// Highlight active TOC link on scroll
-		(function () {
-			const links = Array.from(document.querySelectorAll(".toc a"));
-			const sections = links
-				.map(a => document.querySelector(a.getAttribute("href")))
-				.filter(Boolean);
-
-			const setActive = (id) => {
-				for (const a of links) {
-					a.classList.toggle("active", a.getAttribute("href") === "#" + id);
-				}
-			};
-
-			// Prefer IntersectionObserver (smooth + efficient)
-			if ("IntersectionObserver" in window) {
-				const io = new IntersectionObserver((entries) => {
-					const visible = entries
-						.filter(e => e.isIntersecting)
-						.sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-					if (visible && visible.target && visible.target.id) setActive(visible.target.id);
-				}, {
-					root: null,
-					rootMargin: "-18% 0px -70% 0px",
-					threshold: [0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1]
-				});
-
-				sections.forEach(s => io.observe(s));
-			} else {
-				// Fallback
-				window.addEventListener("scroll", () => {
-					let current = sections[0]?.id || "intro";
-					const y = window.scrollY + 120;
-					for (const s of sections) {
-						if (s.offsetTop <= y) current = s.id;
-					}
-					setActive(current);
-				}, { passive: true });
-			}
-		})();
 	</script>
 </body>
 </html>
