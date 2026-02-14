@@ -1,20 +1,361 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Privacy Policy</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="color-scheme" content="light dark" />
+	<title>Privacy Policy</title>
+	<style>
+		:root{
+			--bg: #0b0f19;
+			--card: rgba(255,255,255,0.06);
+			--card2: rgba(255,255,255,0.09);
+			--text: rgba(255,255,255,0.92);
+			--muted: rgba(255,255,255,0.72);
+			--faint: rgba(255,255,255,0.56);
+			--border: rgba(255,255,255,0.12);
+			--accent: #7aa2ff;
+			--accent2: #7bffc8;
+			--shadow: 0 18px 50px rgba(0,0,0,0.35);
+			--radius: 18px;
+			--mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+			--sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+		}
+
+		@media (prefers-color-scheme: light){
+			:root{
+				--bg:#f6f7fb;
+				--card:#ffffff;
+				--card2:#f2f4ff;
+				--text:#101424;
+				--muted:#303852;
+				--faint:#5a6486;
+				--border: rgba(16,20,36,0.12);
+				--shadow: 0 18px 45px rgba(16,20,36,0.12);
+				--accent:#345dff;
+				--accent2:#00a67d;
+			}
+		}
+
+		*{ box-sizing:border-box; }
+		html,body{ height:100%; }
+		body{
+			margin:0;
+			font-family: var(--sans);
+			color: var(--text);
+			background:
+				radial-gradient(1200px 700px at 20% -10%, rgba(122,162,255,0.35), transparent 55%),
+				radial-gradient(900px 600px at 90% 10%, rgba(123,255,200,0.20), transparent 60%),
+				radial-gradient(800px 500px at 30% 120%, rgba(122,162,255,0.18), transparent 55%),
+				var(--bg);
+			line-height: 1.55;
+		}
+
+		a{ color: var(--accent); text-decoration: none; }
+		a:hover{ text-decoration: underline; }
+
+		.container{
+			max-width: 980px;
+			margin: 0 auto;
+			padding: 32px 18px 60px;
+		}
+
+		.header{
+			padding: 26px 22px;
+			border: 1px solid var(--border);
+			background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.02));
+			box-shadow: var(--shadow);
+			border-radius: var(--radius);
+			backdrop-filter: blur(10px);
+		}
+
+		.kicker{
+			display:inline-flex;
+			gap:10px;
+			align-items:center;
+			padding: 6px 10px;
+			border: 1px solid var(--border);
+			background: var(--card2);
+			border-radius: 999px;
+			color: var(--muted);
+			font-size: 13px;
+		}
+
+		.dot{
+			width:10px; height:10px; border-radius:999px;
+			background: linear-gradient(135deg, var(--accent), var(--accent2));
+			box-shadow: 0 0 0 4px rgba(122,162,255,0.15);
+		}
+
+		h1{
+			margin: 14px 0 6px;
+			font-size: clamp(28px, 3.5vw, 40px);
+			letter-spacing: -0.02em;
+		}
+
+		.sub{
+			margin:0;
+			color: var(--muted);
+			font-size: 15px;
+		}
+
+		.grid{
+			display:grid;
+			grid-template-columns: 1fr;
+			gap: 16px;
+			margin-top: 16px;
+		}
+
+		@media (min-width: 980px){
+			.grid{ grid-template-columns: 2.1fr 0.9fr; gap: 18px; }
+		}
+
+		.card{
+			border: 1px solid var(--border);
+			background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.02));
+			box-shadow: var(--shadow);
+			border-radius: var(--radius);
+			backdrop-filter: blur(10px);
+			padding: 20px 18px;
+		}
+
+		.card h2{
+			margin: 0 0 10px;
+			font-size: 18px;
+			letter-spacing: -0.01em;
+		}
+
+		.card h3{
+			margin: 18px 0 8px;
+			font-size: 16px;
+		}
+
+		.meta{
+			display:flex;
+			flex-wrap: wrap;
+			gap: 10px 14px;
+			margin-top: 14px;
+			color: var(--faint);
+			font-size: 13px;
+		}
+
+		.badge{
+			font-family: var(--mono);
+			font-size: 12px;
+			padding: 6px 10px;
+			border-radius: 999px;
+			border: 1px solid var(--border);
+			background: var(--card2);
+			color: var(--muted);
+		}
+
+		ul{
+			margin: 10px 0 0;
+			padding-left: 20px;
+			color: var(--muted);
+		}
+		li{ margin: 6px 0; }
+
+		hr{
+			border: none;
+			border-top: 1px solid var(--border);
+			margin: 18px 0;
+		}
+
+		.callout{
+			border: 1px solid var(--border);
+			background: linear-gradient(135deg, rgba(122,162,255,0.12), rgba(123,255,200,0.08));
+			border-radius: 14px;
+			padding: 14px 14px;
+			color: var(--muted);
+		}
+
+		.small{ font-size: 13px; color: var(--faint); }
+		.footer{
+			margin-top: 18px;
+			text-align:center;
+			color: var(--faint);
+			font-size: 12px;
+		}
+
+		.toc a{
+			display:block;
+			padding: 8px 10px;
+			border-radius: 10px;
+			border: 1px solid transparent;
+			color: var(--muted);
+		}
+		.toc a:hover{
+			background: var(--card2);
+			border-color: var(--border);
+			text-decoration:none;
+		}
+
+		code{
+			font-family: var(--mono);
+			background: rgba(122,162,255,0.10);
+			border: 1px solid var(--border);
+			padding: 2px 6px;
+			border-radius: 8px;
+			font-size: 0.95em;
+		}
+	</style>
 </head>
+
 <body>
-    <h1>Privacy Policy</h1>
+	<div class="container">
+		<header class="header">
+			<div class="kicker"><span class="dot" aria-hidden="true"></span>Privacy & Data Use</div>
+			<h1>Privacy Policy</h1>
+			<p class="sub">
+				This policy explains what information is handled when you use this mobile game (“the Game”).
+			</p>
+			<div class="meta">
+				<span class="badge">Last Updated: February 2026</span>
+				<span class="badge">Contact: dalenziidev@gmail.com</span>
+			</div>
+		</header>
 
-    <p>Last updated: February 2026</p>
+		<div class="grid">
+			<main class="card">
+				<h2 id="intro">1) Introduction</h2>
+				<p class="sub" style="margin-top:10px;">
+					This Privacy Policy is provided by <strong>Dalenzii Dev</strong> (“we”, “us”, “our”). By using the Game, you
+					agree to the data practices described here.
+				</p>
 
-    <p>This game uses Google AdMob to display advertisements. AdMob may collect data such as device identifiers and usage information to provide ads.</p>
+				<hr />
 
-    <p>This game offers in-app purchases.</p>
+				<h2 id="collect">2) Information We Collect</h2>
+				<p class="sub" style="margin-top:10px;">
+					We do <strong>not</strong> directly collect personal information (such as your name, phone number, or email)
+					through the Game.
+				</p>
+				<p class="sub" style="margin-top:10px;">
+					However, the Game uses third-party services (listed below) that may collect certain information
+					automatically to provide ads, handle purchases, prevent fraud, and comply with legal requirements.
+				</p>
 
-    <p>We do not directly collect personal data from users.</p>
+				<h3 id="admob">3) Advertising (Google AdMob)</h3>
+				<p class="sub">
+					The Game displays ads using <strong>Google AdMob</strong> (including banner, interstitial, and rewarded ads).
+					AdMob may collect and process information such as:
+				</p>
+				<ul>
+					<li>Device identifiers (for example, Advertising ID)</li>
+					<li>IP address (often used to infer approximate location)</li>
+					<li>Device information (model, OS version, language)</li>
+					<li>Ad interaction and performance data (impressions, clicks)</li>
+					<li>Diagnostics and anti-fraud signals</li>
+				</ul>
 
-    <p>If you have questions, contact: mohamedsggregory@email.com</p>
+				<div class="callout" style="margin-top:14px;">
+					<strong>Personalized vs. non-personalized ads:</strong>
+					Where required by law (for example in the EEA/UK), AdMob may request consent to serve personalized ads.
+					If consent is not granted (or not required), AdMob may serve non-personalized ads where available.
+				</div>
+
+				<p class="small" style="margin-top:12px;">
+					Google Privacy Policy:
+					<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>
+				</p>
+
+				<h3 id="purchases">4) In-App Purchases</h3>
+				<p class="sub">
+					The Game offers optional in-app purchases. Purchases are processed by the platform store (e.g., Google Play).
+					We do not receive or store your full payment details (such as credit card numbers).
+				</p>
+
+				<h3 id="retention">5) Data Retention</h3>
+				<p class="sub">
+					We do not operate our own servers to store personal data from the Game. Third-party services (like AdMob and
+					the app store) may retain data under their own policies and legal obligations.
+				</p>
+
+				<h3 id="children">6) Children and Age Eligibility</h3>
+				<p class="sub">
+					The Game is <strong>not directed specifically to children</strong>, but it is intended to be playable by a general audience
+					(including teens and adults). We do not knowingly collect personal information directly from children.
+				</p>
+				<p class="sub">
+					If you are a parent or guardian and believe a child has provided personal information to us directly,
+					contact us at <a href="mailto:dalenziidev@gmail.com">dalenziidev@gmail.com</a> and we will take appropriate action.
+				</p>
+				<p class="small">
+					Note: Third-party advertising and platform services may process certain identifiers automatically. If you plan to
+					target children as the primary audience, you should configure your ad settings for child-directed treatment.
+				</p>
+
+				<h3 id="rights-eea">7) EEA/UK Rights (GDPR)</h3>
+				<p class="sub">
+					If you are located in the European Economic Area (EEA) or the United Kingdom, you may have rights under GDPR,
+					including access, deletion, objection, and withdrawal of consent for certain processing.
+				</p>
+				<p class="sub">
+					When applicable, consent preferences for advertising are presented in-game through a consent form provided by Google’s
+					User Messaging Platform (UMP).
+				</p>
+
+				<h3 id="rights-ca">8) California Rights (CCPA/CPRA)</h3>
+				<p class="sub">
+					If you are a California resident, you may have rights to request information about data collected and to request deletion.
+					Advertising-related processing is handled primarily by third parties (such as Google AdMob).
+				</p>
+
+				<h3 id="security">9) Security</h3>
+				<p class="sub">
+					We take reasonable steps to keep the Game and its integrations configured securely. No system is 100% secure, but we
+					aim to minimize risk and use reputable providers.
+				</p>
+
+				<h3 id="changes">10) Changes to This Policy</h3>
+				<p class="sub">
+					We may update this Privacy Policy from time to time. Updates will be posted on this page and reflected by the
+					“Last Updated” date above.
+				</p>
+
+				<h3 id="contact">11) Contact</h3>
+				<p class="sub">
+					Questions about this Privacy Policy:
+					<strong><a href="mailto:dalenziidev@gmail.com">dalenziidev@gmail.com</a></strong>
+				</p>
+
+				<div class="footer">
+					© <span id="year"></span> Dalenzii Dev. All rights reserved.
+				</div>
+			</main>
+
+			<aside class="card toc">
+				<h2>On this page</h2>
+				<a href="#intro">1) Introduction</a>
+				<a href="#collect">2) Information We Collect</a>
+				<a href="#admob">3) Advertising (Google AdMob)</a>
+				<a href="#purchases">4) In-App Purchases</a>
+				<a href="#retention">5) Data Retention</a>
+				<a href="#children">6) Children and Age Eligibility</a>
+				<a href="#rights-eea">7) EEA/UK Rights (GDPR)</a>
+				<a href="#rights-ca">8) California Rights (CCPA/CPRA)</a>
+				<a href="#security">9) Security</a>
+				<a href="#changes">10) Changes to This Policy</a>
+				<a href="#contact">11) Contact</a>
+
+				<hr />
+
+				<div class="callout">
+					<strong>Important:</strong> In Play Console you must provide a public URL that opens without login.
+					GitHub Pages / Google Sites work well.
+				</div>
+
+				<p class="small" style="margin-top:12px;">
+					If you later add analytics (Firebase, etc.), you must update this policy to list that provider and what it collects.
+				</p>
+			</aside>
+		</div>
+	</div>
+
+	<script>
+		// Keep the copyright year current
+		document.getElementById("year").textContent = new Date().getFullYear();
+	</script>
 </body>
 </html>
